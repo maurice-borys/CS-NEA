@@ -15,3 +15,4 @@
 /Users/bill/Projects/AQA compiler/bin/Debug/net8.0/OneOf.dll
 /Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.csproj.AssemblyReference.cache
 /Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA comp.39B2B1F4.Up2Date
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.sourcelink.json

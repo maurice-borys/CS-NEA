@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args) 
     {
-        string[] lines = File.ReadAllLines("INPUT.txt");
+        IEnumerable<string> lines = File.ReadLines("INPUT.txt");
         Compiler.Compiler aqa_compiler = new Compiler.Compiler();
         Action<State>[] commands = aqa_compiler.Parse(lines);
 

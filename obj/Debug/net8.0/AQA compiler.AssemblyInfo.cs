@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AQA compiler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a66760816cdc4f34b3d499a63389a501c8c31227")]
 [assembly: System.Reflection.AssemblyProductAttribute("AQA compiler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AQA compiler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

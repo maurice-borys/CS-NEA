@@ -3,33 +3,18 @@ using System.Text.RegularExpressions;
 
 namespace Compiler { 
     public class Compiler {
-        const char BRANCH = 'B';
-        const string REGISTER = "R[[0-9]|1[0-5]";
-        const string LITERAL = "#\\d+";
-
-        const string ARG = $"{REGISTER}|{LITERAL}";
-
-        const string INTOP_FORMAT = $"({REGISTER})\\s*,\\s*({ARG})\\s*,\\s*({ARG})";
-        const string TWO_FORMAT = $"({REGISTER})\\s*,\\s*({ARG})";
-        const string BRANCH_NAME = "(\\w+):";
-        Regex HaltFormat = new Regex("\\s*HALT\\s*",RegexOptions.IgnoreCase);
-        Dictionary<string,Regex> Reggie = new Dictionary<string,Regex>() {
-            {"ADD" , new Regex(INTOP_FORMAT,RegexOptions.IgnoreCase)},
-            {"SUB" , new Regex(INTOP_FORMAT,RegexOptions.IgnoreCase)},
-            {"XOR", new Regex(INTOP_FORMAT,RegexOptions.IgnoreCase)},
-            {"CMP", new Regex(TWO_FORMAT,RegexOptions.IgnoreCase)},
-            {"MOV", new Regex(TWO_FORMAT,RegexOptions.IgnoreCase)},
-        };
-
         Dictionary<string,Func<Operand[], Action<State>>> OpDex = new Dictionary<string,Func<Operand[], Action<State>>>() {
             {"ADD", FuncAdd},
             {"SUB", FuncSub},
             {"CMP", FuncCMP},
-            {"MOV", FuncMov}
+            {"MOV", FuncMov},
+            {"HALT", FuncHalt},
         };
 
-        
-        public Action<State>[] Parse(string[] source_code) {
+        Regex Tokeniser = new Regex("(B|\\w+:|\\w+|#\\d+)");
+
+        public Action<State>[] Parse(IEnumerable<string> source) {
+            IEnumerable<string> source_code = PreProcess(source);
             uint id = 0; 
             List<uint> ids = [];
             Dictionary<uint, Action<State>> actionIDs = [];
@@ -37,52 +22,36 @@ namespace Compiler {
             Dictionary<string,uint> labels = [];
             // PREPROCESS TO REMOVE COMMENTS
             foreach (string line in source_code) {
-                string? start_line = string.Join("",line.SkipWhile((char chr) => chr == ' '));
-                if (start_line == null) {
-                    continue;
-                }
-                int splitdex = start_line.IndexOf(' ');
-                if (splitdex == -1) {// Branch labels
-                    Regex asfgd = new Regex(BRANCH_NAME,RegexOptions.IgnoreCase);
-                    if (asfgd.IsMatch(line)) {
-                        string name = asfgd.Match(line).Groups[1].Value;
-                        labels.Add(name,id);
+                string[] tokens = Tokeniser.Matches(line.ToUpper()).Select(match => match.Groups[1].Value).ToArray();
+                string opcode = tokens[0];
+                string[] arguements = tokens[1..];
+                switch (opcode) {
+                    case string name when name.Last() == ':':
+                        labels.Add(opcode[..(opcode.Length-1)],id);
                         ++id;
-                    } else if (HaltFormat.IsMatch(line)) {
-                        actionIDs.Add(id, Halt);
+                        continue;
+                    case "B":
+                        jumps.Add(new Jump(arguements,id));
                         ids.Add(id);
                         ++id;
-                    }
-                    continue;
+                        continue;
                 }
 
-                string opcode = start_line[0..splitdex];
-                string arguement = start_line[(splitdex+1)..];
-                if (line[0] == BRANCH | opcode[0] == BRANCH) {
-                    jumps.Add(new Jump(line,id));
-                    ids.Add(id);
-                    ++id;
-                    continue;
-                }
-                Regex format_check = Reggie[opcode];
-                if (format_check.IsMatch(arguement)) {
-                    Operand[] parameters = format_check
-                        .Match(arguement)
-                        .Groups
-                        .Cast<Group>()
-                        .Skip(1)
-                        .Select((Group arg) => ParseArgs(arg.Value))
-                        .ToArray();
-                    
-                    Func<Operand[], Action<State>> func = OpDex[opcode];
-                    actionIDs.Add(id, func(parameters));
-                    ids.Add(id);
-                    ++id;
+                Operand[] operands = arguements.Select(ParseArgs).ToArray();
+                Func<Operand[], Action<State>> func = OpDex[opcode];
+                actionIDs.Add(id, func(operands));
+                ids.Add(id);
+                ++id;
                     
                 }
+                return Linker(ids,actionIDs,jumps,labels);    
             }
-            return Linker(ids,actionIDs,jumps,labels);
-        }    
+
+        static IEnumerable<string> PreProcess(IEnumerable<string> source) {
+            return source
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .Where(line => !string.IsNullOrEmpty(line));
+        }
 
         static Action<State> FuncJump(CMP condition, uint destination) {
             if (condition == CMP.NULL) {
@@ -115,7 +84,7 @@ namespace Compiler {
         static Action<State>[] Linker(List<uint> ids, Dictionary<uint, Action<State>> actionIDs,List<Jump> jumps,Dictionary<string,uint> labels) {
             Dictionary<uint, Action<State>> jmps = jumps.ToDictionary( 
                 jump => jump.GetID(),
-                jump => FuncJump(jump.GetCondition(),labels[jump.GetName()])
+                jump => FuncJump(jump.GetCondition(),labels[jump.GetLabel()])
             );
             
             uint i = 1;
@@ -169,8 +138,8 @@ namespace Compiler {
             };
         }
 
-        static void Halt(State state) {
-                state.Halt();
+        static Action<State> FuncHalt(Operand[] _) {
+            return state => state.Halt();
         }
 
         static void Wait(State _) {
@@ -202,27 +171,27 @@ public struct Operand {
 
 struct Jump {
     CMP condition;
-    string name; 
+    string label; 
     uint id;
 
-    public Jump(string arguement, uint id) {
+    public Jump(string[] arguements, uint id) {
         this.id = id;
-        Regex jump_format = new Regex("(EQ|NE|GT|LT)? (\\S+)");
-        GroupCollection mas = jump_format.Match(arguement).Groups;
-        name = mas[2].Value;
-
-        string eq = mas[1].Value;
-        condition = eq switch {
+        condition = arguements[0] switch {
             "EQ" => CMP.EQ,
             "NE" => CMP.NE,
             "GT" => CMP.GT,
             "LT" => CMP.LT,
             _ => CMP.NULL,
         };
+        if (condition == CMP.NULL) {
+            label = arguements[0]; //B
+        } else {
+            label = arguements[1]; //B <cond> <label>
+        }
     }
 
-    public string GetName() {
-        return name;
+    public string GetLabel() {
+        return label;
     }
 
     public CMP GetCondition() {
