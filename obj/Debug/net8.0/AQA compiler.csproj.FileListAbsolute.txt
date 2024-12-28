@@ -1,0 +1,17 @@
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/AQA compiler
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/AQA compiler.deps.json
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/AQA compiler.runtimeconfig.json
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/AQA compiler.dll
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/AQA compiler.pdb
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.AssemblyInfoInputs.cache
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.AssemblyInfo.cs
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.csproj.CoreCompileInputs.cache
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.dll
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/refint/AQA compiler.dll
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.pdb
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.genruntimeconfig.cache
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/ref/AQA compiler.dll
+/Users/bill/Projects/AQA compiler/bin/Debug/net8.0/OneOf.dll
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA compiler.csproj.AssemblyReference.cache
+/Users/bill/Projects/AQA compiler/obj/Debug/net8.0/AQA comp.39B2B1F4.Up2Date
