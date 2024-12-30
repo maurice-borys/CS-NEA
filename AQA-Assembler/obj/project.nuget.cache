@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nXkH0SKATfg=",
+  "dgSpecHash": "SOYHerPxU/A=",
   "success": true,
   "projectFilePath": "/Users/bill/Projects/CSNEA/AQA-Assembler/AQA-Assembler.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "/Users/bill/.nuget/packages/harfbuzzsharp.nativeassets.webassembly/7.3.0.3-preview.2.2/harfbuzzsharp.nativeassets.webassembly.7.3.0.3-preview.2.2.nupkg.sha512",
     "/Users/bill/.nuget/packages/harfbuzzsharp.nativeassets.win32/7.3.0.2/harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg.sha512",
     "/Users/bill/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
+    "/Users/bill/.nuget/packages/oneof/3.0.271/oneof.3.0.271.nupkg.sha512",
     "/Users/bill/.nuget/packages/skiasharp/2.88.8/skiasharp.2.88.8.nupkg.sha512",
     "/Users/bill/.nuget/packages/skiasharp.nativeassets.linux/2.88.8/skiasharp.nativeassets.linux.2.88.8.nupkg.sha512",
     "/Users/bill/.nuget/packages/skiasharp.nativeassets.macos/2.88.8/skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",

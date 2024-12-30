@@ -444,6 +444,15 @@
           "lib/net5.0/MicroCom.Runtime.dll": {}
         }
       },
+      "OneOf/3.0.271": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/OneOf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/OneOf.dll": {}
+        }
+      },
       "SkiaSharp/2.88.8": {
         "type": "package",
         "dependencies": {
@@ -1197,6 +1206,21 @@
         "microcom.runtime.nuspec"
       ]
     },
+    "OneOf/3.0.271": {
+      "sha512": "pqpqeK8xQGggExhr4tesVgJkjdn+9HQAO0QgrYV2hFjE3y90okzk1kQMntMiUOGfV7FrCUfKPaVvPBD4IANqKg==",
+      "type": "package",
+      "path": "oneof/3.0.271",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/OneOf.dll",
+        "lib/net45/OneOf.dll",
+        "lib/netstandard1.3/OneOf.dll",
+        "lib/netstandard2.0/OneOf.dll",
+        "oneof.3.0.271.nupkg.sha512",
+        "oneof.nuspec"
+      ]
+    },
     "SkiaSharp/2.88.8": {
       "sha512": "bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
       "type": "package",
@@ -1422,7 +1446,8 @@
       "Avalonia.Desktop >= 11.2.1",
       "Avalonia.Diagnostics >= 11.2.1",
       "Avalonia.Fonts.Inter >= 11.2.1",
-      "Avalonia.Themes.Fluent >= 11.2.1"
+      "Avalonia.Themes.Fluent >= 11.2.1",
+      "OneOf >= 3.0.271"
     ]
   },
   "packageFolders": {
@@ -1487,6 +1512,10 @@
           "Avalonia.Themes.Fluent": {
             "target": "Package",
             "version": "[11.2.1, )"
+          },
+          "OneOf": {
+            "target": "Package",
+            "version": "[3.0.271, )"
           }
         },
         "imports": [

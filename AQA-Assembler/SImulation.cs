@@ -1,29 +1,31 @@
+using System;
 using System.IO;
+using System.Linq;
 using Compiler;
 using OneOf;
 
 class Program 
 {
-    static void Main(string[] args) 
-    {
-        IEnumerable<string> lines = File.ReadLines("INPUT.txt");
-        Compiler.Compiler aqa_compiler = new Compiler.Compiler(new Checker());
-        Action<State>[]? commands = aqa_compiler.Parse(lines);
-        if (commands == null) {
-            foreach (var err in aqa_compiler.Check.Display()) {
-                Console.WriteLine(err);
-            }
-            return;
-        }
+    // static void Main(string[] args) 
+    // {
+    //     IEnumerable<string> lines = File.ReadLines("INPUT.txt");
+    //     Compiler.Compiler aqa_compiler = new Compiler.Compiler(new Checker());
+    //     Action<State>[]? commands = aqa_compiler.Parse(lines);
+    //     if (commands == null) {
+    //         foreach (var err in aqa_compiler.Check.Display()) {
+    //             Console.WriteLine(err);
+    //         }
+    //         return;
+    //     }
 
-        State state = new State();
-        while (state.GetPC() < commands.Count()) {
-            Action<State> next = commands[state.GetPC()];
-            next(state);
-            state.IncrPC();
-        }
-        state.Display();
-    }
+    //     State state = new State();
+    //     while (state.GetPC() < commands.Count()) {
+    //         Action<State> next = commands[state.GetPC()];
+    //         next(state);
+    //         state.IncrPC();
+    //     }
+    //     state.Display();
+    // }
 }
 
 public enum CMP {
