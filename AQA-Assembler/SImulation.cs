@@ -1,8 +1,9 @@
 using System;
+using ErrorHandling;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Compiler;
+using Assembling;
 using OneOf;
 
 class Simulation
@@ -10,7 +11,7 @@ class Simulation
     static void Simulate(string[] args) 
     {
         IEnumerable<string> lines = File.ReadLines("INPUT.txt");
-        Compiler.Compiler aqa_compiler = new Compiler.Compiler(new Checker());
+        Assembling.Assembler aqa_compiler = new Assembling.Assembler(new ErrorHandling.Checker());
         Action<State>[]? commands = aqa_compiler.Parse(lines);
         if (commands == null) {
             foreach (var err in aqa_compiler.Check.Display()) {
