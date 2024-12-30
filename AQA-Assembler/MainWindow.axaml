@@ -5,5 +5,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AQA_Assembler.MainWindow"
         Title="AQA_Assembler">
-    Welcome to Avalonia!
+
+     <StackPanel Margin="10">
+        <TextBox Name="MyTextBox" Width="300" Watermark="Enter text here..." />
+    </StackPanel>
 </Window>
