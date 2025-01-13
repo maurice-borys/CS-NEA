@@ -6,6 +6,16 @@
         x:Class="AQA_Assembler.MainWindow"
         Title="AQA_Assembler">
 
+      <TabControl>
+        <!-- Tab 1 -->
+        <TabItem Header="Tab 1">
+            <TextBox Name="SourceCode" Height="400" AcceptsReturn="True" TextWrapping="Wrap"/>
+        </TabItem>
+        
+        <!-- Tab 2 -->
+        <TabItem Header="Tab 2">
+            <TextBlock Margin="10" Text="Content for Tab 2" />
+        </TabItem>
+    </TabControl>
       
-      <TextBox Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
 </Window>
