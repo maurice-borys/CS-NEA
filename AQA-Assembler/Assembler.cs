@@ -123,8 +123,8 @@ namespace Assembling
         {
             Dictionary<uint, Action<State>> jmps = jumps.ToDictionary
             ( 
-                jump => jump.GetID(),
-                jump => FuncJump(jump.GetCondition(),labels[jump.GetLabel()])
+                jump => jump.ID,
+                jump => FuncJump(jump.Condition,labels[jump.Label])
             );
             
             uint i = 1;
@@ -239,14 +239,14 @@ namespace Assembling
 
     struct Jump 
     {
-        CMP condition;
-        string label; 
-        uint id;
+        public readonly CMP Condition;
+        public readonly string Label;
+        public readonly uint ID;
 
         public Jump(string[] arguements, uint id) 
         {
-            this.id = id;
-            condition = arguements[0] switch 
+            this.ID = id;
+            Condition = arguements[0] switch 
             {
                 "EQ" => CMP.EQ,
                 "NE" => CMP.NE,
@@ -254,29 +254,14 @@ namespace Assembling
                 "LT" => CMP.LT,
                 _ => CMP.NULL,
             };
-            if (condition == CMP.NULL) 
+            if (Condition == CMP.NULL) 
             {
-                label = arguements[0]; //B
+                Label = arguements[0]; //B
             } 
             else 
             {
-                label = arguements[1]; //B <cond> <label>
+                Label = arguements[1]; //B <cond> <label>
             }
-        }
-
-        public string GetLabel() 
-        {
-            return label;
-        }
-
-        public CMP GetCondition() 
-        {
-            return condition;
-        }
-
-        public uint GetID() 
-        {
-            return id;
         }
     }
 }

@@ -50,11 +50,10 @@ public class State
     // const short CARRY_FLAG = 0b0010;
     // const short OVERFLOW_FLAG = 0b0001;
 
-    public CMP CmpRegister {get;set;}
-    CMP cmp;
+    public CMP CmpRegister {get;set;} = CMP.NULL;
 
 
-    uint pc;
+    uint pc = 1;
     public uint PC 
     {
         get {return pc;}
@@ -67,20 +66,18 @@ public class State
 
     public State() 
     {
-        cmp = CMP.NULL;
-        pc = 1; //skip wait at 0
         registers = new OneOf<int, float>[16];
         stack = new OneOf<int, float>[1024];
     }
 
     public void IncrPC() 
     {
-        ++PC;
+        ++pc;
     }
 
     public void Halt()
     {
-        PC = uint.MaxValue;
+        pc = uint.MaxValue;
     }
 
     public void AssignRegister(OneOf<int,float> reg_outdex, OneOf<int,float> value) 

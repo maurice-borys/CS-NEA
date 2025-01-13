@@ -26,7 +26,7 @@ public partial class MainWindow : Window
     {
         if (e.Key == Key.F5)
         {
-            TextBox? textBoxContent = this.FindControl<TextBox>("MyTextBox");
+            TextBox? textBoxContent = this.FindControl<TextBox>("SourceCode");
             if (textBoxContent == null) { 
                 return;
             }

@@ -5,7 +5,7 @@ namespace ErrorHandling
 {
     public class Checker 
     {
-            List<CompilerError> Errors;
+            List<CompilerError> Errors = [];
             public const byte REG = 0b0001;
             public const byte POSINT = 0b0010;
             public const byte NEGINT = 0b0100;
@@ -35,14 +35,7 @@ namespace ErrorHandling
                 0 => "NONE",
                 _ => throw new Exception("NOT FOUND"),
             };
-            public bool success;
-
-            public Checker() 
-            {
-                Errors = [];
-                success = true;
-            }
-
+            public bool success = true;
 
             static ushort BitAssemble(byte[] inByte) 
             {
@@ -90,23 +83,23 @@ namespace ErrorHandling
 
             public IEnumerable<string> Display() 
             {
-                return Errors.Select(error => $"{error.type} Error found at line {error.lineNumber}: {error.line}\n{error.context}");
+                return Errors.Select(error => $"{error.Type} Error found at line {error.lineNumber}: {error.Line}\n{error.Context}");
             }    
         }
 
     struct CompilerError 
     {
-        public string line;
-        public string context;
-        public int lineNumber;
-        public ErrType type;
+        public readonly string Line;
+        public readonly string Context;
+        public readonly int lineNumber;
+        public ErrType Type;
 
         public CompilerError(int lineNumber, string line, string context, ErrType type) 
         {
-            this.context = context;
-            this.line = line;
+            this.Context = context;
+            this.Line = line;
             this.lineNumber = lineNumber;
-            this.type = type;
+            this.Type = type;
         }
     }
 

@@ -6,7 +6,6 @@
         x:Class="AQA_Assembler.MainWindow"
         Title="AQA_Assembler">
 
-     <StackPanel Margin="10">
-        <TextBox Name="MyTextBox" Width="300" Watermark="Enter text here..." />
-    </StackPanel>
+      
+      <TextBox Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
 </Window>
