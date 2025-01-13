@@ -11,18 +11,21 @@ class Simulation
     static void Simulate(string[] args) 
     {
         IEnumerable<string> lines = File.ReadLines("INPUT.txt");
-        Assembling.Assembler aqa_compiler = new Assembling.Assembler(new ErrorHandling.Checker());
-        Action<State>[]? commands = aqa_compiler.Parse(lines);
-        if (commands == null) {
-            foreach (var err in aqa_compiler.Check.Display()) {
+        Assembling.Assembler aqAssembler = new Assembling.Assembler(new ErrorHandling.Checker());
+        Action<State>[]? commands = aqAssembler.Parse(lines);
+        if (commands == null) 
+        {
+            foreach (var err in aqAssembler.Check.Display()) 
+            {
                 Console.WriteLine(err);
             }
             return;
         }
 
         State state = new State();
-        while (state.GetPC() < commands.Count()) {
-            Action<State> next = commands[state.GetPC()];
+        while (state.PC < commands.Count()) 
+        {
+            Action<State> next = commands[state.PC];
             next(state);
             state.IncrPC();
         }
@@ -30,7 +33,8 @@ class Simulation
     }
 }
 
-public enum CMP {
+public enum CMP 
+{
     EQ,
     NE, // only for jump 
     LT,
@@ -39,61 +43,61 @@ public enum CMP {
 }
 
 
-public class State {
-    const short SIGN_FLAG = 0b1000;
-    const short ZERO_FLAG = 0b0100;
-    const short CARRY_FLAG = 0b0010;
-    const short OVERFLOW_FLAG = 0b0001;
-    //short status;
+public class State 
+{
+    // const short SIGN_FLAG = 0b1000;
+    // const short ZERO_FLAG = 0b0100;
+    // const short CARRY_FLAG = 0b0010;
+    // const short OVERFLOW_FLAG = 0b0001;
 
-    CMP Cmp_register;
+    public CMP CmpRegister {get;set;}
+    CMP cmp;
+
 
     uint pc;
+    public uint PC 
+    {
+        get {return pc;}
+        set {pc = value > 0 ? value : 1;}
+    }
+
+        
     OneOf<int,float>[] stack; 
     OneOf<int,float>[] registers;
 
-    public State() {
-        Cmp_register = CMP.NULL;
+    public State() 
+    {
+        cmp = CMP.NULL;
         pc = 1; //skip wait at 0
         registers = new OneOf<int, float>[16];
         stack = new OneOf<int, float>[1024];
     }
 
-    public CMP GetCmp() {
-        return Cmp_register;
+    public void IncrPC() 
+    {
+        ++PC;
     }
 
-    public void SetCMP(CMP cmp) {
-        Cmp_register = cmp;
+    public void Halt()
+    {
+        PC = uint.MaxValue;
     }
 
-    public uint GetPC() {
-        return pc;
-    }
-
-    public void SetPC(uint i) {
-        pc = i;
-    }
-
-    public void IncrPC() {
-        ++pc;
-    }
-
-    public void Halt() {
-        pc = 2147483647;
-    }
-
-    public void AssignRegister(OneOf<int,float> reg_outdex, OneOf<int,float> value) {
+    public void AssignRegister(OneOf<int,float> reg_outdex, OneOf<int,float> value) 
+    {
         registers[reg_outdex.AsT0] = value;
     }
 
-    public void Display() {
-        foreach (var reg in registers) {
+    public void Display() 
+    {
+        foreach (var reg in registers) 
+        {
             Console.WriteLine(reg);
         }
     }
 
-    public OneOf<int,float> GetValue(Operand operand) => operand.Use switch {
+    public OneOf<int,float> GetValue(Operand operand) => operand.Use switch 
+    {
         Checker.REG => registers[operand.Value.AsT0],
         _ => operand.Value,
     };

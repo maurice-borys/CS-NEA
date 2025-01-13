@@ -22,7 +22,8 @@ public partial class MainWindow : Window
     //     Console.WriteLine($"You entered: {textBoxContent.Text}");
     // }
 
-    private void OnKeyDown(object? sender, KeyEventArgs e) {
+    private void OnKeyDown(object? sender, KeyEventArgs e) 
+    {
         if (e.Key == Key.F5)
         {
             TextBox? textBoxContent = this.FindControl<TextBox>("MyTextBox");
