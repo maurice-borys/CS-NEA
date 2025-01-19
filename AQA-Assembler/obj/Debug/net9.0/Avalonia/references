@@ -57,6 +57,7 @@
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.ComponentModel.EventBasedAsync.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.ComponentModel.Primitives.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.ComponentModel.TypeConverter.dll
+/Users/bill/.nuget/packages/system.configuration.configurationmanager/9.0.1/lib/net9.0/System.Configuration.ConfigurationManager.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Configuration.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Console.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Core.dll
@@ -66,6 +67,7 @@
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.Contracts.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.Debug.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.DiagnosticSource.dll
+/Users/bill/.nuget/packages/system.diagnostics.eventlog/9.0.1/lib/net9.0/System.Diagnostics.EventLog.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.FileVersionInfo.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.Process.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Diagnostics.StackTrace.dll
@@ -137,6 +139,7 @@
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Resources.Reader.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Resources.ResourceManager.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Resources.Writer.dll
+/Users/bill/.nuget/packages/system.runtime.caching/9.0.1/lib/net9.0/System.Runtime.Caching.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Runtime.CompilerServices.Unsafe.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Runtime.CompilerServices.VisualC.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Runtime.dll
@@ -162,6 +165,7 @@
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.Cryptography.Encoding.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.Cryptography.OpenSsl.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.Cryptography.Primitives.dll
+/Users/bill/.nuget/packages/system.security.cryptography.protecteddata/9.0.1/lib/net9.0/System.Security.Cryptography.ProtectedData.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.Cryptography.X509Certificates.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.dll
 /usr/local/share/dotnet/packs/Microsoft.NETCore.App.Ref/9.0.0/ref/net9.0/System.Security.Principal.dll

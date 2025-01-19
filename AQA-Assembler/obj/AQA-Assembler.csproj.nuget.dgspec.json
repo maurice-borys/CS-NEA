@@ -71,6 +71,10 @@
             "OpenTk": {
               "target": "Package",
               "version": "[4.9.3, )"
+            },
+            "System.Runtime.Caching": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [

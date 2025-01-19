@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TaaIcG8AgGg=",
+  "dgSpecHash": "EhO25zwaDYU=",
   "success": true,
   "projectFilePath": "/Users/bill/Projects/CSNEA/AQA-Assembler/AQA-Assembler.csproj",
   "expectedPackageFiles": [
@@ -47,9 +47,13 @@
     "/Users/bill/.nuget/packages/skiasharp.nativeassets.macos/2.88.9/skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
     "/Users/bill/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.9/skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",
     "/Users/bill/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
+    "/Users/bill/.nuget/packages/system.configuration.configurationmanager/9.0.1/system.configuration.configurationmanager.9.0.1.nupkg.sha512",
+    "/Users/bill/.nuget/packages/system.diagnostics.eventlog/9.0.1/system.diagnostics.eventlog.9.0.1.nupkg.sha512",
     "/Users/bill/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
+    "/Users/bill/.nuget/packages/system.runtime.caching/9.0.1/system.runtime.caching.9.0.1.nupkg.sha512",
     "/Users/bill/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/bill/.nuget/packages/system.security.accesscontrol/4.7.0/system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "/Users/bill/.nuget/packages/system.security.cryptography.protecteddata/9.0.1/system.security.cryptography.protecteddata.9.0.1.nupkg.sha512",
     "/Users/bill/.nuget/packages/system.security.principal.windows/4.7.0/system.security.principal.windows.4.7.0.nupkg.sha512",
     "/Users/bill/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512"
   ],
