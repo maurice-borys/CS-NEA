@@ -6,15 +6,15 @@
         x:Class="AQA_Assembler.MainWindow"
         Title="AQA_Assembler">
 
-      <TabControl>
+      <TabControl SelectionChanged="MyTabControl_SelectionChanged">
         <!-- Tab 1 -->
-        <TabItem Header="Tab 1">
+        <TabItem Header="Source">
             <TextBox Name="SourceCode" Height="400" AcceptsReturn="True" TextWrapping="Wrap"/>
         </TabItem>
         
         <!-- Tab 2 -->
-        <TabItem Header="Tab 2">
-            <TextBlock Margin="10" Text="Content for Tab 2" />
+        <TabItem Header="Secret">
+            <Image Source="file:///Users/bill/Projects/CSNEA/AQA-Assembler/Assets/tab2img.png"/>
         </TabItem>
     </TabControl>
       

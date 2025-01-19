@@ -46,15 +46,11 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.3, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.2.1, )"
-            },
-            "Avalonia.Diagnostics": {
-              "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.3, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
@@ -67,6 +63,14 @@
             "OneOf": {
               "target": "Package",
               "version": "[3.0.271, )"
+            },
+            "OpenAL.NETCore": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Xam.Plugin.SimpleAudioPlayer": {
+              "target": "Package",
+              "version": "[1.6.0, )"
             }
           },
           "imports": [

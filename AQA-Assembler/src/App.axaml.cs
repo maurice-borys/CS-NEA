@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
+using Avalonia.Diagnostics;
 namespace AQA_Assembler;
 
 public partial class App : Application
@@ -17,7 +17,7 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow();
         }
-
+    
         base.OnFrameworkInitializationCompleted();
     }
 }

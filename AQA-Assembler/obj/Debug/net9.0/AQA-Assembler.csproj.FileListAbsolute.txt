@@ -22,17 +22,13 @@
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.OpenGL.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Vulkan.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.dll
-/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Controls.ColorPicker.dll
-/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Controls.DataGrid.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Desktop.dll
-/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Diagnostics.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Fonts.Inter.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.FreeDesktop.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Native.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Remote.Protocol.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Skia.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Themes.Fluent.dll
-/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Themes.Simple.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.Win32.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Avalonia.X11.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/HarfBuzzSharp.dll
@@ -40,6 +36,8 @@
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/OneOf.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/SkiaSharp.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Tmds.DBus.Protocol.dll
+/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Plugin.SimpleAudioPlayer.Abstractions.dll
+/Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/Plugin.SimpleAudioPlayer.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/runtimes/win-arm64/native/av_libglesv2.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/runtimes/win-x64/native/av_libglesv2.dll
 /Users/bill/Projects/CSNEA/AQA-Assembler/bin/Debug/net9.0/runtimes/win-x86/native/av_libglesv2.dll
