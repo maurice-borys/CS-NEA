@@ -3,10 +3,11 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia;
 using System.Diagnostics;
+using NAudio.Wave;
 
 namespace AQA_Assembler;
 using System.IO;
-using OpenAL;
+using OpenTK.Audio.OpenAL;
 
 public partial class MainWindow : Window
 {
@@ -14,11 +15,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         KeyDown += OnKeyDown;
-
-        foreach (var x in Application.Current.Resources)
-        {
-            Console.WriteLine($"ASSET {x}");
-        }
     }
 
     private void OnKeyDown(object? sender, KeyEventArgs e) 
@@ -47,86 +43,112 @@ public partial class MainWindow : Window
                 }
                 if (tabHeader == "Secret")
                 {
-                    Play("/Users/bill/Projects/CSNEA/AQA-Assembler/Assets/funky.mp3");
+                    Play("/Users/bill/Projects/CSNEA/AQA-Assembler/Assets/funky.wav");
                 }
             }
         }
     }
 
 
-    private void Play(string path) 
+    private void Play(string path)  
     {
-        string filePath = path; // Change this to your actual WAV file path
-
-        if (!File.Exists(filePath))
-        {
-            Console.WriteLine("File not found: " + filePath);
-            return;
-        }
+        string filePath = path; // Change to your WAV file
 
         // Initialize OpenAL
-        IntPtr device = Alc.OpenDevice(null);
-        if (device == IntPtr.Zero)
+        string deviceName = ALC.GetString(ALDevice.Null, AlcGetString.DefaultDeviceSpecifier);
+        ALDevice? device = ALC.OpenDevice(deviceName); // Open default audio device
+        if (device == null)
         {
-            Console.WriteLine("Failed to open OpenAL device.");
+            Console.WriteLine("NO DEVICE FOUND");
             return;
         }
 
-        IntPtr context = Alc.CreateContext(device, (int[])null);
-        Alc.MakeContextCurrent(context);
-        // Load WAV file
-        var audioData = LoadWave(filePath, out int channels, out int sampleRate, out ALFormat format);
-        // Generate buffer and source
-        uint buffer, source;
-        AL.GenBuffers(1, out buffer);
-        AL.GenSources(1, out source);
+        int[]? attributes = null;
+        
+        ALContext context = ALC.CreateContext((ALDevice) device, attributes);
+        ALC.MakeContextCurrent(context);
 
-        // Buffer the audio data
-        AL.BufferData(buffer, format, audioData, audioData.Length, sampleRate);
-        AL.Source(source, ALSourcei.Buffer, (int)buffer);
+        Console.WriteLine($"BUFFER: {AL.GetError()}");
+        // Generate OpenAL buffer and source
+        AL.GenBuffer(out int buffer);
+        int source = AL.GenSource();
 
-        // Play the sound
+        // Load WAV file into OpenAL buffer
+        byte[] wavData = LoadWav(filePath, out ALFormat format, out int sampleRate);
+        AL.BufferData(buffer, format, ref wavData[0], wavData.Length, sampleRate);
+
+        // Attach buffer to source and play
+        AL.Source(source, ALSourcei.Buffer, buffer);
         AL.SourcePlay(source);
-        Console.WriteLine("Playing audio... Press Enter to exit.");
-        Console.ReadLine();
+        Console.WriteLine($"PLAYING: {AL.GetError()}");
+        Console.WriteLine("Playing audio... Press Enter to stop.");
+        Console.ReadLine(); // Wait for user input
 
         // Cleanup
-        AL.SourceStop(source);
-        AL.DeleteSources(1, ref source);
-        AL.DeleteBuffers(1, ref buffer);
-        Alc.MakeContextCurrent(IntPtr.Zero);
-        Alc.DestroyContext(context);
-        Alc.CloseDevice(device);
+        AL.DeleteSource(source);
+        AL.DeleteBuffer(buffer);
+        ALC.DestroyContext(context);
+        ALC.CloseDevice((ALDevice) device);
     }
 
-    static byte[] LoadWave(string filename, out int channels, out int sampleRate, out ALFormat format)
+    static byte[] LoadWav(string filePath, out ALFormat format, out int sampleRate)
     {
-        using (var reader = new BinaryReader(File.OpenRead(filename)))
+        using (var memoryStream = new MemoryStream())
+        using (var reader = new WaveFileReader(filePath))
         {
-            // Skip RIFF header
-            reader.BaseStream.Seek(22, SeekOrigin.Begin);
-            channels = reader.ReadInt16();
-            sampleRate = reader.ReadInt32();
-            reader.BaseStream.Seek(34, SeekOrigin.Begin);
-            int bitsPerSample = reader.ReadInt16();
-            reader.BaseStream.Seek(40, SeekOrigin.Begin);
-            int dataSize = reader.ReadInt32();
-            byte[] data = reader.ReadBytes(dataSize);
+            // Create a buffer to read data
+            byte[] buffer = new byte[reader.Length];
+            int bytesRead;
 
-            format = (channels == 1 && bitsPerSample == 8) ? ALFormat.Mono8 :
-                     (channels == 1 && bitsPerSample == 16) ? ALFormat.Mono16 :
-                     (channels == 2 && bitsPerSample == 8) ? ALFormat.Stereo8 :
-                     (channels == 2 && bitsPerSample == 16) ? ALFormat.Stereo16 :
-                     throw new NotSupportedException("Unsupported audio format");
+            // Read the WAV file into the buffer
+            while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                memoryStream.Write(buffer, 0, bytesRead);
+            }
+            sampleRate = reader.WaveFormat.SampleRate;
 
-            return data;
+            int numChannels = reader.WaveFormat.Channels;
+            int bitsPerSample = reader.WaveFormat.BitsPerSample;
+            if (numChannels == 1 && bitsPerSample == 8) format = ALFormat.Mono8;
+            else if (numChannels == 1 && bitsPerSample == 16) format = ALFormat.Mono16;
+            else if (numChannels == 2 && bitsPerSample == 8) format = ALFormat.Stereo8;
+            else if (numChannels == 2 && bitsPerSample == 16) format = ALFormat.Stereo16;
+            else throw new Exception("Unsupported WAV format!");
+            return memoryStream.ToArray(); 
         }
-
-
-
     }
+}
 
 
+        // using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        // using (BinaryReader reader = new BinaryReader(fs))
+        // {
+        //     // Read WAV header
+        //     reader.ReadChars(4); // "RIFF"
+        //     reader.ReadInt32(); // File size
+        //     reader.ReadChars(4); // "WAVE"
+        //     reader.ReadChars(4); // "fmt "
+        //     reader.ReadInt32(); // Subchunk size
+        //     reader.ReadInt16(); // Audio format
+        //     ushort numChannels = reader.ReadUInt16(); // Channels
+        //     sampleRate = reader.ReadInt32(); // Sample rate
+        //     reader.ReadInt32(); // Byte rate
+        //     reader.ReadInt16(); // Block align
+        //     ushort bitsPerSample = reader.ReadUInt16(); // Bits per sample
+
+        //     // Read "data" chunk
+        //     reader.ReadChars(4); // "data"
+        //     int dataSize = reader.ReadInt32();
+
+        //     // Determine OpenAL format
+        //     if (numChannels == 1 && bitsPerSample == 8) format = ALFormat.Mono8;
+        //     else if (numChannels == 1 && bitsPerSample == 16) format = ALFormat.Mono16;
+        //     else if (numChannels == 2 && bitsPerSample == 8) format = ALFormat.Stereo8;
+        //     else if (numChannels == 2 && bitsPerSample == 16) format = ALFormat.Stereo16;
+        //     else throw new Exception("Unsupported WAV format!");
+
+        //     return reader.ReadBytes(dataSize); // Read audio data
+        // }
     //     // Path to the Rust executable
     //     string rustAppPath = "/Users/bill/Projects/CSNEA/audio_wizard/target/release/audio_wizard"; // Adjust this to your actual path
 

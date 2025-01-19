@@ -15,8 +15,8 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1" />
+    <PackageReference Include="Naudio" Version="2.2.1" />
     <PackageReference Include="OneOf" Version="3.0.271" />
-    <PackageReference Include="OpenAL.NETCore" Version="1.0.3" />
-    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
+    <PackageReference Include="OpenTk" Version="4.9.3" />
   </ItemGroup>
 </Project>

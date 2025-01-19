@@ -60,17 +60,17 @@
               "target": "Package",
               "version": "[11.2.1, )"
             },
+            "Naudio": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "OneOf": {
               "target": "Package",
               "version": "[3.0.271, )"
             },
-            "OpenAL.NETCore": {
+            "OpenTk": {
               "target": "Package",
-              "version": "[1.0.3, )"
-            },
-            "Xam.Plugin.SimpleAudioPlayer": {
-              "target": "Package",
-              "version": "[1.6.0, )"
+              "version": "[4.9.3, )"
             }
           },
           "imports": [
